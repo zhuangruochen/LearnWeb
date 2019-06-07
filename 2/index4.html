@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .p1 {
+            color: red;
+        }
+
+        .p2 {
+            font-family: "微软雅黑"
+        }
+
+        .p3 {
+            font-size: 26px;
+        }
+
+        .p4 {
+            font-weight: bold;
+        }
+
+        .p5 {
+            font-style: italic
+        }
+
+        .p6 {
+            text-indent:2em;
+        }
+
+        .p7 {
+            text-align: center;
+        }
+
+        .p8 {
+            line-height: 50px;
+        }
+
+        .p9 {
+            height: 50px;
+            background-color: gray;
+        }
+
+        .p10 {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <p class="p1">1、!important，加在样式属性值后，权重值为 10000</p>
+    <p class="p2">2、内联样式，如：style=””，权重值为1000</p>
+    <p class="p3">3、ID选择器，如：#content，权重值为100</p> 3、ID选择器，如：#content，权重值为100
+    <p class="p4">4、类，伪类和属性选择器，如： content、:hover 权重值为10</p>
+    <p class="p5">5、标签选择器和伪元素选择器，如：div、p、:before 权重值为1</p>
+    <p class="p6">6、通用选择器（*）、子选择器（>）、相邻选择器（+）、同胞选择器（~）、权重值为0</p>
+    <p class="p7">7、!important，加在样式属性值后，权重值为 10000</p>
+    <p class="p8">8、内联样式，如：style=””，权重值为1000</p>
+    <p class="p9 p8">9、ID选择器，如：#content，权重值为100</p>
+    <p class="p10">10、类，伪类和属性选择器，如： content、:hover 权重值为10</p>
+    <p class="p1 p2 p3 p4 p5 p6 p7 p8 p9 p10">1、!important，加在样式属性值后，权重值为 10000</p>
+
+</body>
+
+</html>

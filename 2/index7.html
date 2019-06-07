@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+
+        body {
+            width: 1920px;
+        }
+
+        .header {
+            height: 50px;
+            background: #f74727;
+        }
+
+        .header .head {
+            width: 1005px;
+            height: 50px;
+            background: #d1d3d6;
+            margin: auto;
+        }
+
+        .banner {
+            height: 500px;
+            background: rgb(97, 170, 127);
+        }
+
+        .category {
+            width: 1005px;
+            height: 200px;
+            margin: auto;
+            background: rgb(204, 94, 180);
+        }
+
+        .category .item {
+            width: 125px;
+            height: 165px;
+            background: red;
+            float: left;
+            padding-left: 25px;
+            padding-right: 25px;
+            padding-bottom: 25px;
+            padding-top: 10px;
+            border-right: 1px dashed black;
+        }
+
+        .category .item:first-child {
+            padding-left: 0px;
+        }
+
+        .category .item:last-child {
+            padding-right: 0px;
+            border-right: 0px;
+        }
+        .case{
+            height: 490px;
+            background: #eeeeee;
+        }
+        .case .title-text{
+            width:1005px;
+            margin:auto;
+            font-size: 45px;
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+        .case .item-wrapper{
+            width:1000px;
+            margin: auto;
+            overflow: auto;
+        }
+        .case .item-wrapper .item{
+            width:320px;
+            height: 330px;
+            float: left;
+            background: blue;
+        }
+        .case .item-wrapper .item-center{
+            margin:0 20px;
+        }
+        .case p{
+            width:1005px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 15px;
+            height: 40px;
+            line-height: 40px;
+            font: 30px;
+            color: dimgray;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="head"></div>
+    </div>
+    <div class="banner"></div>
+    <div class="category">
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+        <div class="item"></div>
+    </div>
+    <div class="case">
+        <div class="title-text">Case</div>
+        <div class="item-wrapper">
+            <div class="item"></div>
+            <div class="item item-center"></div>
+            <div class="item"></div>
+        </div>
+        <p>查看更多</p>
+    </div>
+</body>
+
+</html>
