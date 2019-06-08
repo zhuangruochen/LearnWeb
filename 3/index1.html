@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .div1{
+            width:300px;
+            height: 300px;
+            background: red;
+        }
+    </style>
+    <script>
+        function getParams(){
+            var search=location.search;
+            if(search.length>0)
+                search=search.slice(1,search.length);
+            var list=search.split("&");
+            var result={};
+            list.forEach(function(item){
+                var p =item.split("=");
+                result[p[0]]=p[1];
+            });
+            return result;
+        }
+        window.onload=function(){
+            var div=document.getElementById("div1");
+            console.log(div);
+            console.log(div.tagName);
+            console.log(div.innerHTML);
+            console.log(div.innerText);
+            console.log(div.className);
+            console.log(div.classList);
+            console.log(div.style);
+            console.log(div.curretStyle["width"]);
+        };
+        </script>
+</head>
+<body>
+    <div class="div1   div2" id="div1">sdfjie</div>
+    
+</body>
+</html>
