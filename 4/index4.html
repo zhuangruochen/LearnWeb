@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        .slider {
+            width: 500px;
+            margin: 0 auto;
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .slider .list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            width:2000px;
+            left:-500px;
+
+        }
+
+        .slider .list .item {
+            float: left;
+            width: 500px;
+            height: 200px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider .list .item img {
+            display: block;
+            width: 500px;
+            height: 200px;
+        }
+        .slider .prev {
+            position: absolute;
+            top: 90px;
+            left: 0px;
+        }
+        .slider .prev:hover{
+            cursor:pointer;
+        }
+
+        .slider .next {
+            position: absolute;
+            top: 90px;
+            right: 0px;
+        }
+        .slider .next:hover{
+            cursor:pointer;
+        }
+        .slider .pagination{
+            position: relative;
+            top:180px;
+            width:100px;
+            margin: 0 auto;
+            overflow: auto;
+        }
+        .slider .pagination .bullet{
+            width:10px;
+            height:10px;
+            background-color:black;
+            margin: 0px 5px;
+            float:left;
+            border-radius: 50%;
+            /* position: relative; */
+            
+            /* z-index: 2000; */
+        }
+        .slider .pagination .bullet:hover{
+            cursor: pointer;
+        }
+        .slider .pagination .bullet.active{
+            background-color: aqua
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        $(function(){
+            (function(){
+                var current;
+                var count;
+                var itemWidth;
+                var timerId;
+                function init(){
+                    //获取图片数量
+                    count=$(".slider .list .item").length;
+                    //填充pagination
+                    var pg='';                    
+                    for(var i=0;i<count;i++){
+                        pg=pg+('<div class="bullet'+(i==0?' active':'')+'" ></div>');
+                    }
+                    $(".slider .pagination").html("");
+                    $(".slider .pagination").html(pg);
+                    //重设pagination 宽度
+                    $(".slider .pagination").width(20*(count));
+                    //重设 list 宽度
+                    $(".slider .list").width($(".slider .list .item").width()*(count+2));
+
+                    var item0=$(".slider .list .item")[0].cloneNode(true);
+                    var itemend=$(".slider .list .item")[count-1].cloneNode(true);
+                    $(".slider .list").prepend(itemend);
+                    $(".slider .list").append(item0);
+                    current=1;
+                    itemWidth=$(".slider .list .item").width();
+
+                    slideAuto();
+
+                    $(".slider .prev").click(function(){
+                        slidePrev();
+                    });
+
+                    $(".slider .next").click(function(){
+                        slideNext();
+                    });
+
+                    $(".slider .pagination .bullet").click(function(item,i,b){
+                        var next=$(".slider .pagination .bullet").index(this)+1;
+                        if(current!=next){
+                            slideTo(next,1000);
+                        }
+                    });
+                }
+                function slideNext(){
+                    slideTo(current+1);
+                }
+                function slidePrev(){
+                    slideTo(current-1);
+                }
+                function slideAuto(){
+                    stop();
+                    timerId=setInterval(function(){
+                        slideNext();
+                    },5000);
+                }
+                function stop(){
+                    if(timerId){
+                        clearInterval(timerId);
+                    }
+                }
+                function slideTo(next,mill){
+                    var left=-(next*itemWidth);
+                    var m=1000;
+                    if(typeof(mill)=="number"){
+                        m=mill;
+                    }
+                    $(".slider .list").stop(false,true);
+                    $(".slider .list").animate({left:left+"px"},m);
+                    current=next;
+
+                    //如果为边界则瞬移至相应块
+                    if(current==0){
+                        current=count;
+                        $(".slider .list").animate({left:-(current*itemWidth)+"px"},0);
+                    }
+                    else if(current==count+1){
+                        current=1;
+                        $(".slider .list").animate({left:-(current*itemWidth)+"px"},0);
+                    }
+                    $(".slider .pagination .bullet").removeClass("active");
+                    $($(".slider .pagination .bullet")[current-1]).addClass("active");
+                }
+                init();
+            })();
+        });
+    </script>
+</head>
+
+<body>
+    <div class="slider">
+        <ul class="list">
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=1"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=2"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=3"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=4"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=5"></li>
+        </ul>
+        <div class="prev">&lt;&lt;</div>
+        <div class="next">&gt;&gt;</div>
+        <div class="pagination">
+            <div class="bullet active"></div>
+            <div class="bullet"></div>
+            <div class="bullet"></div>
+            <div class="bullet"></div>
+        </div>
+    </div>
+</body>
+
+</html>

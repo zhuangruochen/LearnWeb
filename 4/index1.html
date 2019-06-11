@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+        }
+        .div1{
+            width:100px;
+            height: 100px;
+            background-color: black;
+            position:absolute;
+            left: 0;
+            right:0;
+        }
+    </style>
+    <script>
+        
+    </script>
+    <script>
+        var speedx=1;
+        var speedy=2;
+        function move(){
+            var d=document.getElementsByClassName("div1")[0];
+            var currentLeft=parseInt(window.getComputedStyle(d).left);
+            var currentTop=parseInt(window.getComputedStyle(d).top);
+            d.style.left=(currentLeft+speedx)+"px";
+            d.style.top=(currentTop+speedy)+"px";
+            check_border_collision(d);
+        }
+        window.onload=function(){
+            setInterval(function(){
+                
+                move();
+                
+            },1);
+        }
+        function check_border_collision(d){
+            var currentLeft=parseInt(window.getComputedStyle(d).left);
+            var currentTop=parseInt(window.getComputedStyle(d).top);
+            if(currentLeft<=0||currentLeft>window.innerWidth-100){
+                speedx*=-1;
+            }
+            if(currentTop<=0||currentTop>window.innerHeight-100){
+                speedy*=-1;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="div1"></div>
+</body>
+</html>

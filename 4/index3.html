@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+
+        .slider {
+            width: 500px;
+            height: 200px;
+            margin: 0 auto;
+            position: relative;
+
+        }
+
+        .slider .list {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .slider .list .item {
+            /* float:left; */
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        .slider .list .item:first-child {
+            opacity: 1;
+        }
+
+        .slider .list .item img {
+            display: block;
+        }
+
+        .slider .prev {
+            position: absolute;
+            top: 90px;
+            left: 0px;
+        }
+
+        .slider .next {
+            position: absolute;
+            top: 90px;
+            right: 0px;
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function getStyle(el, property) {
+            return getComputedStyle(el)[property];
+        }
+        function myanimate(el, property, target) {
+ 
+            var eid=setInterval(function () {
+                var current = 0;
+                if (property === "opacity") {
+                    current = Math.round(parseFloat(getStyle(el, property)) * 100);
+                } else {
+                    current = parseInt(getStyle(el, property));
+                }
+                if(current==target)
+                    clearInterval(eid);
+                var speed = (target - current) / 30;
+                if(target<current)
+                    speed*=-1;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (property === "opacity") {
+                    el.style[property] = (current + speed) / 100;
+                } else {
+                    el.style[property] = (current + speed) + "px";
+                }
+            }, 20);
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            (function () {
+                var currentIndex;
+                var count;
+
+                function init() {
+                    currentIndex =0;
+                    count = document.querySelectorAll(".slider .list .item").length;
+                    document.getElementsByClassName("prev")[0].onclick = function () {
+                        slidePrev();
+                    }
+                    document.getElementsByClassName("next")[0].onclick=function(){
+                        slideNext();
+                    }
+                }
+
+                function slidePrev() {
+                    var next=currentIndex-1;
+                    if(next<0)
+                        next=count-1;
+                    slideTo(currentIndex, next);
+                    currentIndex = next;
+                    
+                }
+
+                function slideNext() {
+                    var next=currentIndex+1;
+                    next=next%count;
+                    slideTo(currentIndex,next);
+                    currentIndex=next;
+                }
+
+                function slideTo(current, next) {
+                    var list = document.querySelectorAll(".slider .list .item");
+                    $(list[current]).animate({opacity:0},"slow");
+                    $(list[next]).animate({opacity:1},"slow");
+                }
+                init();
+            })();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="slider">
+        <ul class="list">
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=1"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=2"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=3"></li>
+            <li class="item"><img src="https://via.placeholder.com/500x200?text=4"></li>
+        </ul>
+        <button class="prev">prev</button>
+        <button class="next">next</button>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+        }
+
+        .div1 {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function getStyle(el, property) {
+            return getComputedStyle(el)[property];
+        }
+
+        function myanimate(el, property, target) {
+
+            setInterval(function () {
+                var current = 0;
+                if (property === "opacity") {
+                    current = Math.round(parseFloat(getStyle(el, property)) * 100);
+                } else {
+                    current = parseInt(getStyle(el, property));
+                }
+                var speed = (target - current) / 30;
+                speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+                if (property === "opacity") {
+                    el.style[property]=(current+speed)/100;
+                } else {
+                    el.style[property] = (current + speed) + "px";
+                }
+            }, 20);
+        }
+    </script>
+    <script>
+        window.onload = function () {
+            var div = document.getElementsByClassName("div1")[0];
+            myanimate(div, "left", 300);
+            myanimate(div, "top", 400);
+            myanimate(div, "opacity", 50);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="div1"></div>
+
+</body>
+
+</html>
