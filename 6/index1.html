@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+</head>
+<body>
+    <div class="app">
+        <p class="msg">{{msg}}</p>
+        <p v-for="item in list">
+            {{item}}
+        </p>
+        <h4 v-html="msg2">aaa</h4>
+        {{msg2}}
+    </div>
+    <script>
+        var vm=new Vue({
+            el:'.app',
+            data:{
+                msg:'欢迎学习vue',
+                msg2:'<h1>asdjfijief</h1>',
+                list:["sdfe",111]
+            }
+        });
+    </script>
+</body>
+</html>

@@ -54,6 +54,20 @@
             myanimate(div, "opacity", 50);
         }
     </script>
+    <script>
+        $(function(){
+            $.ajax({
+                url:"http://localhost:8080/api/test/index",
+                type:"GET",
+                dataType:"json",
+                crossDomain:true,
+                success:function(res){
+                    console.log(res);
+                }
+            });
+        });
+    </script>
+
 </head>
 
 <body>
