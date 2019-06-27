@@ -15,14 +15,20 @@
         </p>
         <h4 v-html="msg2">aaa</h4>
         {{msg2}}
+        <input type="button" value="按钮" :title="msg.length" @mouseover="btnclick">
     </div>
     <script>
         var vm=new Vue({
             el:'.app',
             data:{
-                msg:'欢迎学习vue',
+                msg:'欢迎学习vue1',
                 msg2:'<h1>asdjfijief</h1>',
-                list:["sdfe",111]
+                list:["sdfe",111]                
+            },
+            methods:{
+                    btnclick:function(){
+                        console.log(111);
+                    }
             }
         });
     </script>

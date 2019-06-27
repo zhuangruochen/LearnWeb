@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://vuejs.org/js/vue.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <button @click="btn1">按钮1</button><button @click="btn2">按钮2</button>
+        <div @mouseleave="btn1" @mouseover="btn2">{{text1}}</div>
+    </div>
+    <script>
+            var vm=new Vue({
+                el:'.container',
+                data:{
+                    text1:'这是一个跑马灯哦！',
+                    it:null
+                },
+                methods:{
+                    btn1(){
+                        if(this.it)
+                            return;
+                        this.it=setInterval(()=>{
+                            var start=this.text1.substring(0,1);
+                            var tail=this.text1.substring(1);
+                            this.text1=tail+start;
+                        },100);
+                    },
+                    btn2(){
+                        clearInterval(this.it);
+                        this.it=null;
+                    },
+                    bmd(){
+                        
+                        
+                    }
+                }
+            });
+    </script>
+</body>
+</html>
